@@ -1,0 +1,79 @@
+{% include "header.html"%}
+<main id="main" class="main">
+  <div class="main-inner">
+    <div id="content" class="content">
+      <section id="posts" class="posts-expand">
+
+        {% for post in post_list%}
+        <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+          <header class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+              <a class="post-title-link" href="{{reverse_url('post', post['path'])}}" itemprop="url">
+                {{post['title']}} </a>
+            </h1>
+            <div class="post-meta">
+              <span class="post-time">
+                发表于
+                <time itemprop="dateCreated" datetime="{{post['created']}}" content="{{post['created']}}">
+                  {{ datetime.datetime.strptime(post['created'], "%Y-%m-%d %H:%M:%S").strftime("%Y-%m-%d") }}</time>
+              </span>
+              <span class="post-category">
+                &nbsp; | &nbsp; 分类于
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="{{reverse_url('category', post['category'])}}">{{post['category']}}</a> </span>
+              </span>
+              <!-- <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a rel="nofollow" href="">4 条评论</a>
+              </span> -->
+              <!-- <span class="post-comments-count">
+                &nbsp;|&nbsp;
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-eye"></i>
+                </span>
+                88
+              </span> -->
+            </div>
+          </header>
+
+          <div class="post-body">
+            <!-- 取消转义 -->
+            {% raw post['description'] %}
+            <p class="more"><a href="{{reverse_url('post',post['path'])}}" title="{{post['title']}}">阅读全文 »</a></p>
+          </div>
+
+          <footer class="post-footer">
+
+            <div class="post-eof"></div>
+
+          </footer>
+        </article>
+        {%end%}
+      </section>
+      <nav class="pagination">
+        {%if page_total > 1%}
+        {% for page in range(1, min(page_total, 3) + 1)%}
+          {%if cur_page == page%}
+            <a href="{{reverse_url('page', page)}}" class="page-number current">{{page}}</a>
+          {%else%}
+            <a href="{{reverse_url('page', page)}}">{{page}}</a>
+          {%end%}
+        {%end%}
+
+        {% if page_total > 4%}
+          <span>...</span><a href="{{reverse_url('page', page_total)}}">{{page_total}}</a>
+        {%end%}
+        {%if page_total > 1%}
+          <a href="{{reverse_url('page', 2)}}" class="extend next"> »</a></nav>
+        {%end%}
+      {%end%}
+    </div>
+  </div>
+
+
+
+  {% module SideBar() %}
+
+</main>
+
+{% include "footer.html"%}

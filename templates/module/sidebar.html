@@ -1,0 +1,64 @@
+<div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+        <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+        <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+        <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+</div>
+
+<aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <section class="site-overview sidebar-panel sidebar-panel-active">
+            <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <img class="site-author-image" src="{{static_url('images/avatar.gif')}}"
+                    alt="{{owner_info["name"]}}" itemprop="image" />
+                <p class="site-author-name" itemprop="name">{{owner_info["name"]}}</p>
+            </div>
+            <p class="site-description motion-element" itemprop="description">{{"/".join(owner_info["tags"])}}<br>{{owner_info["slogan"]}}</p>
+            <nav class="site-state motion-element">
+                <div class="site-state-item">
+                    <a href="{{reverse_url('index')}}">
+                        <span class="site-state-item-count">{{statistic['post']}}</span>
+                        <span class="site-state-item-name">日志</span>
+                    </a>
+                </div>
+
+                <div class="site-state-item">
+                    <a href="{{reverse_url('categories')}}">
+                        <span class="site-state-item-count">{{statistic['category']}}</span>
+                        <span class="site-state-item-name">分类</span>
+                    </a>
+                </div>
+
+                <div class="site-state-item">
+                    <a href="{{reverse_url('tags')}}">
+                        <span class="site-state-item-count">{{statistic['tag']}}</span>
+                        <span class="site-state-item-name">标签</span>
+                    </a>
+                </div>
+            </nav>
+            <!-- <div class="feed-link motion-element">
+                <a href="" rel="alternate">
+                    <i class="menu-item-icon icon-next-feed"></i>
+                    RSS
+                </a>
+            </div> -->
+            <div class="links-of-author motion-element">
+            </div>
+            {%if len(friend_list) > 0%}
+            <div class="links-of-author motion-element">
+                <p class="" style="margin-bottom: 12px;"><strong>友情链接</strong></p>
+                {% for friend in friend_list %}
+                <span class="links-of-author-item"><a href="{{friend['url']}}" title="" target="_blank">{{friend['name']}}</a></span>
+                {% end %}
+            </div>
+            {%end%}
+            <div class="cc-license motion-element" itemprop="license">
+                <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+                    <img src="https://og8dz06d9.qnssl.com/usr/themes/next/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+                </a>
+            </div>
+        </section>
+
+    </div>
+</aside>

@@ -1,0 +1,9 @@
+<ul id="menu" class="menu menu-left">
+    {% for menu in menu_list %}
+        <li class="menu-item menu-item-home">
+            <a href="{{reverse_url(menu['url_name'])}}" rel="section">{{menu['name']}}</a>
+        </li>
+    {% end %}
+
+
+</ul>

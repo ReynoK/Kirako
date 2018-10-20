@@ -1,0 +1,35 @@
+{% include "header.html"%}
+<main id="main" class="main">
+    <div class="main-inner">
+        <div id="content" class="content">
+            <div id="posts" class="posts-collapse">
+                <div class="category-all-page">
+                    <div class="category-all-title">
+                        目前共计 {{len(tags)}} 个标签
+                    </div>
+                    <div class="category-all">
+                        <ul class="category-list">
+                            {% for tag in tags%}
+                            {% from urllib.request import quote, unquote %}
+                            <li class="category-list-item">
+                                <a class="category-list-link" href="{{reverse_url('tag', tag['name'])}}">{{tag['name']}}</a>
+                                <span class="category-list-count">{{tag['num']}}</span>
+                            </li>
+                            {%end%}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-toggle">
+        <div class="sidebar-toggle-line-wrap">
+            <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+        </div>
+    </div>
+    {% module SideBar() %}
+    </main>
+
+{% include "footer.html"%}
