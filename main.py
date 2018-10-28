@@ -105,6 +105,7 @@ class NotFoundHandler(BaseHandler):
 
 class IndexHandler(BaseHandler):
     def get(self, page=1):
+        page = int(page)
         page_num = 5
         sql = "select * from post order by created desc limit ?,?"
         self.cursor.execute(sql, ((page-1)*page_num, page_num))
