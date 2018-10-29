@@ -103,7 +103,7 @@ class NotFoundHandler(BaseHandler):
         self.render("404.html")
 
 
-class IndexHandler(BaseHandler):
+class PageHandler(BaseHandler):
     def get(self, page=1):
         page = int(page)
         page_num = 5
@@ -122,6 +122,10 @@ class IndexHandler(BaseHandler):
 
         self.render("index.html", post_list=post_list,
                     page_total=page_total, cur_page=page)
+
+class IndexHandler(BaseHandler):
+    def get(self):
+        self.redirect(self.reverse_url('home'))
 
 class AboutMeHandler(BaseHandler):
     def get(self):
@@ -149,7 +153,7 @@ class ArchiveHandler(BaseHandler):
 class MenuUIModule(tornado.web.UIModule):
     def render(self):
         menu_list = [
-            {"name": "首页", "url_name": "index"},
+            {"name": "首页", "url_name": "home"},
             {"name": "分类", "url_name": "categories"},
             {"name": "归档", "url_name": "archive"},
             {"name":"标签", "url_name":"tags"},
@@ -294,9 +298,9 @@ def make_app():
         "ui_modules": {'Menu': MenuUIModule, 'SideBar': SideBarUIModule}
     }
     handlers = [
-        url(r"/$", IndexHandler, name="home"),
+        url(r"/$", PageHandler, name="home"),
         url(r"/index$", IndexHandler, name="index"),
-        url(r"/page/(?P<page>\d+)$", IndexHandler, name="page"),
+        url(r"/page/(?P<page>\d+)$", PageHandler, name="page"),
         url(r"/about", AboutMeHandler, name="about"),
         url(r"/archive", ArchiveHandler, name='archive'),
         url(r"/categories", CategoriesHandler, name='categories'),
