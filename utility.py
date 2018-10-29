@@ -39,7 +39,10 @@ class HighlightRenderer(mistune.Renderer):
         if not lang:
             return '\n<pre><code>%s</code></pre>\n' % \
                 mistune.escape(code)
-        lexer = get_lexer_by_name(lang, stripall=True)
+        try:
+            lexer = get_lexer_by_name(lang, stripall=True)
+        except ClassNotFound as e:
+            return '\n<pre><code>%s</code></pre>\n' % mistune.escape(code)
         formatter = html.HtmlFormatter()
         return highlight(code, lexer, formatter)
 
