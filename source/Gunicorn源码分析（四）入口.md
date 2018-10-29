@@ -36,7 +36,7 @@ class WSGIApplication(Application)
 
 ##### BaseApplication
 
-```
+```python
 class BaseApplication(object):
     """
     An application interface for configuring and loading
@@ -107,7 +107,7 @@ class BaseApplication(object):
 
 ##### Application
 
-```
+```python
 class Application(BaseApplication):
 
     # 'init' and 'load' methods are implemented by WSGIApplication.
@@ -260,7 +260,7 @@ class Application(BaseApplication):
 
 ##### WSGIApplication
 
-```
+```python
 class WSGIApplication(Application):
     def init(self, parser, opts, args):
         if opts.paste:          # paste 配置

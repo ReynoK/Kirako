@@ -3,7 +3,7 @@ import re
 import datetime
 
 from pygments import highlight
-from pygments.lexers import get_lexer_by_name
+from pygments.lexers import get_lexer_by_name,guess_lexer
 from pygments.formatters import html
 from pygments.util import ClassNotFound
 
@@ -38,12 +38,12 @@ SEPERATE = re.compile(r'^=+\n')
 class HighlightRenderer(mistune.Renderer):
     def block_code(self, code, lang):
         if not lang:
-            lexer = get_lexer_by_name('text', stripall=True)
+            lexer = guess_lexer(code, stripall=True)
         else:
             try:
                 lexer = get_lexer_by_name(lang, stripall=True)
             except ClassNotFound as e:
-                lexer = get_lexer_by_name('text', stripall=True)
+                lexer = guess_lexer(code, stripall=True)
         formatter = html.HtmlFormatter(linenos=True)
         return highlight(code, lexer, formatter)
 
