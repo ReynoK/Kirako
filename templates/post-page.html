@@ -41,8 +41,9 @@
                     <footer class="post-footer">
                         <div class="post-tags">
                             {% for tag in tags%}
-                            <a href="{{reverse_url('tag', tag)}}">{{tag}}</a> </div>
+                            <a href="{{reverse_url('tag', tag)}}">{{tag}}</a> 
                             {% end %}
+                            </div>
                         <div class="post-nav">
                             <div class="post-nav-prev post-nav-item">
                                 {% if prev%}
