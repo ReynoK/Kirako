@@ -3,7 +3,7 @@ Date: 2018-10-22 23:15:14
 Category: 技术
 Tag: python
 ============================================================
-Write start here....>Worker进程专门用来负责处理请求，那么当Worker进程挂掉或需要重新启动又或者需要关闭时，又要怎么办呢？这时候就需要一个负责全局统筹的进程——Master进程，同时也是Gunicorn的核心。
+>Worker进程专门用来负责处理请求，那么当Worker进程挂掉或需要重新启动又或者需要关闭时，又要怎么办呢？这时候就需要一个负责全局统筹的进程——Master进程，同时也是Gunicorn的核心。
 
 Master进程主要在`arbiter.py`中`Arbiter `类实现，`arbiter`的意思是`仲裁者；裁决人`，也十分符合这个类的功能。
 
@@ -51,9 +51,8 @@ class Arbiter(object):
 4. 主进程管理。
 
 ##### 初始化
-----
 
-```
+```python
 # I love dynamic languages
     SIG_QUEUE = []
     SIGNALS = [getattr(signal, "SIG%s" % x)
@@ -141,7 +140,7 @@ class Arbiter(object):
 初始化十分简单，无非就是初始一些变量，然后从配置`cfg`中读取配置，设置Worker进程的实现形式、最高并发数等等x。
 
 ##### 信号处理
-----
+
 `Arbiter`支持以下信号：
 
 | 信号 | 功能 |  |
@@ -156,7 +155,7 @@ class Arbiter(object):
 |USR2| 在线升级Gunicorn，旧进程需要手动kill|`reexec()`|
 |WINCH|主进程Dameon模式下，优雅的关闭工作进程| `kill_workers()`|
 
-```
+```python
     def init_signals(self):
         """初始化信号处理函数
         Initialize master signal handling. Most of the signals
@@ -224,7 +223,6 @@ class Arbiter(object):
 这里使用了一个小技巧，每次放置信号到队列中的时候同时会调用`wakeup`方法，该方法会向之前创建的管道中写入数据，这样在主进程在`sleep`(实际是阻塞在`select`)的时候可以及时检测之前有信号没有处理，从而退出`sleep`。
 
 ##### Worker进程的生成
----
 
 ```python
     def spawn_worker(self):
@@ -295,9 +293,8 @@ class Arbiter(object):
 启用新的`Worker`进程只会在`Worker数量小于指定数量`或者重新导入配置文件时调用。`Arbiter`通过`os.fork()`创建`Worker`进程，在`Worker`创建好之后，由于继承了父进程打开的文件描述符，其中包含了其他`Worker`进程的`tmpfile`文件，需要将其关闭（避免耗费资源），然后就可以进入`Worker.init_process()`中，开始处理请求。
 
 ##### Worker进程的毁灭
-----
 
-```
+```python
     def kill_workers(self, sig):
         """\
         Kill all workers with the signal `sig`
@@ -356,9 +353,8 @@ Worker进程的关闭主要是通过由`Arbiter`主进程对其发送`signal`来
 3. `Worker`进程数量大于指定数量。
 
 ##### Arbiter的热更新与重启
----
 
-```
+```python
    def reexec(self):
         """\
         重新创建一个主进程和工作进程
@@ -456,9 +452,8 @@ Worker进程的关闭主要是通过由`Arbiter`主进程对其发送`signal`来
 `Arbiter`提供2种方式'重启'，一种是热更新，不重启`Arbiter`，仅仅是重新读取配置，然后生成新的`Worker`进程，逐步关闭之前产生的`Worker`进程；另一种是，完全重启一个新的`Arbiter`进程（同时又是旧`Arbiter`的子进程），然后这个新的`Arbiter`又启动新的`Worker`进程，**旧的Arbiter需要手动杀死**。
 
 ##### Arbiter的主循环
----
 
-```
+```python
     def start(self):
         """启动Arbiter
         """

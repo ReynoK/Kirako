@@ -36,7 +36,7 @@ workers/
 
 下面是将`Worker`类实现的简略。
 
-```
+```python
 class Worker(object):
     SIGNALS = [getattr(signal, "SIG%s" % x)
             for x in "ABRT HUP QUIT INT TERM USR1 USR2 WINCH CHLD".split()] # 支持的信号
@@ -91,7 +91,7 @@ class Worker(object):
 
 `__init__()`做的事情相对简单，就是将一些相关的参数，如`cfg`、`app`等作为`Worker`对象的属性，同时创建一个`tmpfile`，**父进程通过检查该文件的时间戳，来确认子进程是否存活。**
 
-```
+```python
 def notify(self):
         """\
         Your worker subclass must arrange to have this method called
@@ -102,7 +102,7 @@ def notify(self):
 ```
 `notify()`调用`WorkerTmp.notify()`更改所对应tmp文件的时间戳。
 
-```
+```python
     def init_process(self):
         """\
         If you override this method in a subclass, the last statement
@@ -172,7 +172,7 @@ def notify(self):
 5. **获取实现了wsgi协议的app对象**
 6. 进入主循环方法
 
-```
+```python
     def run(self):
         """\
         This is the mainloop of a worker process. You should override
@@ -187,7 +187,7 @@ def notify(self):
 再来看看`WorkerTmp `类。
 ####WorkerTmp
 
-```
+```python
 # -*- coding: utf-8 -
 #
 # This file is part of gunicorn released under the MIT license.
@@ -267,7 +267,7 @@ class WorkerTmp(object):
 3. 创建一个可重入锁；
 4. 调用父类的`init_process()`，在该方法里面调用了`run()`方法。
 
-```
+```python
     def run(self):
         """运行的主函数
             ①通知父进程，我还活着
@@ -334,7 +334,8 @@ class WorkerTmp(object):
 4. 杀死已经允许最大连接事件的`keep-alive`连接。
 
 下面是一个请求刚进来的处理过程：
-```
+
+```python
     def _wrap_future(self, fs, conn):
         """将futuren放入队列中，并设置处理完成后的回调函数
         
@@ -386,7 +387,7 @@ class WorkerTmp(object):
 
 `self.handler()`主要的部分在于其调用的`self.handle_request()`，因此直接看`self.handle_request()`做了哪些事情：
 
-```
+```python
     def handle_request(self, req, conn):
         """主要的处理函数
         """

@@ -66,7 +66,7 @@ gunicorn/
 >config.py文件主要是用生成配置对象cfg，为每一个配置项生成一个对象。
 
 
-```
+```python
 class Setting(object):
     name = None
     value = None
@@ -139,7 +139,7 @@ Setting = SettingMeta('Setting', (Setting,), {})
 `Setting = SettingMeta('Setting', (Setting,), {})`将`Setting`的元类设置为`SettingMeta`，**表明`Setting`这个类及其子类都是由`SettingMeta`创建出来的**。
 再来看看`SettingMeta`。
 
-```
+```python
 KNOWN_SETTINGS = []
 
 class SettingMeta(type):
@@ -167,7 +167,7 @@ class SettingMeta(type):
 
 看下其中的一个配置类`Bind`：
 
-```
+```python
 class Bind(Setting):
     name = "bind"
     action = "append"
@@ -198,7 +198,7 @@ class Bind(Setting):
 
 每一个配置类都像上面这样的形式定义，十分简洁。
 
-```
+```python
 def make_settings(ignore=None):
     settings = {}
     ignore = ignore or ()
@@ -212,7 +212,7 @@ def make_settings(ignore=None):
 
 `make_setting`方法会将所有定义的`Setting`子类实例化。
 
-```
+```python
 class Config(object):
 
     def __init__(self, usage=None, prog=None):

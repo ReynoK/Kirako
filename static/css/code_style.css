@@ -2,9 +2,15 @@
 .highlighttable td {padding: 0px;}
 .highlight tr{border: #272822;}
 div.highlight {width: 861px;overflow: auto;padding-right: 0px;margin-right: 0px;}
+blockquote {background-color: #f3f3f5;}
 pre{
     padding: 10px;
 }
+.post-body h5{font-size: 20px;font-weight: bold;}
+.post-body h4{font-size: 24px;font-weight: bold;}
+.post-body h3{font-size: 28px;font-weight: bold;}
+.post-body h2{font-size: 32px;font-weight: bold;}
+.post-body h1{font-size: 36px;font-weight: bold;}
 .linenos {color: #f8f8f2;background-color: #272822;}
 .highlight pre{font-family: Menlo,Monaco,Consolas,Courier New,monospace;}
 .highlight .hll { background-color: #49483e; }

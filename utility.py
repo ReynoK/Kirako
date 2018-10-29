@@ -62,7 +62,7 @@ def parse_post(text):
             parse_result['date'] = datetime.datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
         elif key.lower() == "tag":
             tag_list = value.split()
-            parse_result['tag'] = [tag.strip() for tag in tag_list]
+            parse_result['tag'] = [tag.strip().capitalize() for tag in tag_list]
         else:
             parse_result[key.lower()] = value.strip()
 
