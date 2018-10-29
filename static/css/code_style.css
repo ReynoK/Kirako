@@ -2,7 +2,9 @@
 .highlighttable td {padding: 0px;}
 .highlight tr{border: #272822;}
 div.highlight {width: 861px;overflow: auto;padding-right: 0px;margin-right: 0px;}
-blockquote {background-color: #f3f3f5;}
+blockquote {background-color: #f3f3f5;border-left: 8px solid #ddd;font-size: 14px;padding:0px 12px;}
+.post-body p{margin-bottom: 5px;}
+.post-body strong{font-weight: bold;}
 pre{
     padding: 10px;
 }
