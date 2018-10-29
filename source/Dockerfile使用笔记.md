@@ -94,7 +94,7 @@ RUN ["可执行文件","参数1","参数2" ... ]
 
 通过`docker-compose`，我只需定义以下`yml`文件：
 
-```yml
+```yaml
 version: '3'
 services:
     develop:
