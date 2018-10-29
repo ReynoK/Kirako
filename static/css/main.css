@@ -95,9 +95,7 @@ hr {
 pre {
   overflow: auto;
 }
-code,
 kbd,
-pre,
 samp {
   font-family: monospace, monospace;
   font-size: 1em;
@@ -458,15 +456,21 @@ td {
 }
 pre,
 .highlight {
-  background: #f7f7f7;
-  margin: 20px 0;
-  padding: 15px;
+  /* background: #f7f7f7; */
+  margin: 0px 0px 10px 0;
+  padding-left: 10px;
+  padding-right: 15px;
   overflow: auto;
   font-size: 13px;
-  color: #4d4d4c;
+  /* color: #4d4d4c; */
   line-height: 1.6;
 }
-.highlight .gutter pre,
+.highlight{
+  padding-left: 0px;
+  margin: 0px;
+  overflow: auto;
+}
+/* .highlight .gutter pre,
 .gist .gist-file .gist-data .line-numbers {
   color: #666;
 }
@@ -522,7 +526,7 @@ pre code {
 }
 .highlight .line {
   height: 20px;
-}
+} */
 .gist {
   margin: 20px 0;
   border-style: solid;

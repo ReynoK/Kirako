@@ -44,7 +44,7 @@ class HighlightRenderer(mistune.Renderer):
             lexer = get_lexer_by_name(lang, stripall=True)
         except ClassNotFound as e:
             return '\n<pre><code>%s</code></pre>\n' % mistune.escape(code)
-        formatter = html.HtmlFormatter()
+        formatter = html.HtmlFormatter(linenos=True)
         return highlight(code, lexer, formatter)
 
 def parse_post(text):
