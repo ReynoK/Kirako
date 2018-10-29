@@ -5,6 +5,7 @@ import datetime
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import html
+from pygments.util import ClassNotFound
 
 example = r"""Date: 2018-09-08 00:00:01
 tag: Linux Python python
