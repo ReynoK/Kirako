@@ -38,12 +38,12 @@ SEPERATE = re.compile(r'^=+\n')
 class HighlightRenderer(mistune.Renderer):
     def block_code(self, code, lang):
         if not lang:
-            return '\n<pre><code>%s</code></pre>\n' % \
-                mistune.escape(code)
-        try:
-            lexer = get_lexer_by_name(lang, stripall=True)
-        except ClassNotFound as e:
-            return '\n<pre><code>%s</code></pre>\n' % mistune.escape(code)
+            lexer = get_lexer_by_name('text', stripall=True)
+        else:
+            try:
+                lexer = get_lexer_by_name(lang, stripall=True)
+            except ClassNotFound as e:
+                lexer = get_lexer_by_name('text', stripall=True)
         formatter = html.HtmlFormatter(linenos=True)
         return highlight(code, lexer, formatter)
 
