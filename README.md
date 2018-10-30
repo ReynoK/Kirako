@@ -2,9 +2,7 @@
 This is my blog
 
 ##### dependence
-`pip install tornado`
-`pip install mistune`
-`pip install pygments`
+`pip install -r requirements.txt`
 
 ##### useage
-`python kirako.py --h`
+`python kirako.py --help`
