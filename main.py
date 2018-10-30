@@ -158,6 +158,7 @@ class MenuUIModule(tornado.web.UIModule):
             {"name": "归档", "url_name": "archive"},
             {"name":"标签", "url_name":"tags"},
             # {"name":"友链", "url_name":"about"},
+            # {"name": "简书", "url": "https://www.jianshu.com/u/0582bfa0265d"},
             {"name": "关于", "url_name": "about"},
         ]
         return self.render_string("module/menu.html", menu_list=menu_list)
