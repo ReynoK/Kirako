@@ -304,11 +304,11 @@ class QcloudCDNHandler(BaseHandler):
         if not os.path.exists(file_name):
             self.redirect(self.reverse_url("404"))
             return
-
+        content = ''
         with open(file_name, "rb") as f:        # 不明白为何要加b
             content = f.read()
 
-        return content
+        return self.write(content)
         
 def make_app():
 
