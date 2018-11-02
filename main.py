@@ -158,6 +158,7 @@ class MenuUIModule(tornado.web.UIModule):
             {"name": "归档", "url_name": "archive"},
             {"name":"标签", "url_name":"tags"},
             # {"name":"友链", "url_name":"about"},
+            # {"name": "简书", "url": "https://www.jianshu.com/u/0582bfa0265d"},
             {"name": "关于", "url_name": "about"},
         ]
         return self.render_string("module/menu.html", menu_list=menu_list)
@@ -290,6 +291,25 @@ class PostHandler(BaseHandler):
         self.render("post-page.html", content=content, tags=tags,**article_info)
 
 
+class QcloudCDNHandler(BaseHandler):
+    """获取具体博文
+    
+    Arguments:
+        BaseHandler {[type]} -- [description]
+    """
+
+    def get(self):
+        file_name = os.path.join(main_dir, "qcloud_cdn.html")
+
+        if not os.path.exists(file_name):
+            self.redirect(self.reverse_url("404"))
+            return
+        content = ''
+        with open(file_name, "rb") as f:        # 不明白为何要加b
+            content = f.read()
+
+        return self.write(content)
+        
 def make_app():
 
     settings = {
@@ -307,6 +327,7 @@ def make_app():
         url(r"/tags", TagsHandler, name='tags'),
         url(r"/post/(?P<path>.*)$", PostHandler, name='post'),
         url(r"/tag/(?P<tag>.*)$", TagHandler, name='tag'),
+        url(r"/qcloud_cdn.html", QcloudCDNHandler),
         url(r"/category/(?P<category>.*)$",
             CategoryHandler, name='category'),          # 可以通过reverse_url("category", "tech")来获取url
         url(r"/notfound", NotFoundHandler, name='404'),

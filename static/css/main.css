@@ -866,9 +866,11 @@ body {
 .sidebar a {
   color: #999;
   border-bottom-color: #555;
+  text-decoration: none;
 }
 .sidebar a:hover {
   color: #eee;
+  text-decoration: none;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .sidebar {
@@ -2589,4 +2591,8 @@ img.alignright {
 }
 .category-all-page .category-all-title{
   text-align: left;
+}
+
+aside.sidebar a{
+  border-bottom: 0px;
 }
