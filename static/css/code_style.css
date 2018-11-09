@@ -7,7 +7,7 @@ blockquote {background-color: #eceeef;border-left: 8px solid #ddd;font-size: 15p
 .post-body strong{font-weight: bold;}
 .post-body p code {background-color: #f9f9f9;padding: 0px 4px;color: #ff687f;word-spacing: 5px;}
 pre{
-    padding: 10px;
+    padding: 10px 8px 10px 5px;
 }
 .post-body h5{font-size: 20px;font-weight: bold;}
 .post-body h4{font-size: 24px;font-weight: bold;}
