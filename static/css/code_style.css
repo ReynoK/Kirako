@@ -1,7 +1,7 @@
 .highlighttable {border-radius: 10px;    }
 .highlighttable td {padding: 0px;}
 .highlight tr{border: #272822;}
-div.highlight {width: 100%;overflow: auto;padding-right: 0px;margin-right: 0px;}
+div.highlight {overflow: auto;padding-right: 0px;margin-right: 0px;}
 blockquote {background-color: #eceeef;border-left: 8px solid #ddd;font-size: 15px;padding:0px 12px;}
 .post-body p{margin-bottom: 5px;}
 .post-body strong{font-weight: bold;}
@@ -9,12 +9,12 @@ blockquote {background-color: #eceeef;border-left: 8px solid #ddd;font-size: 15p
 pre{
     padding: 10px 8px 10px 5px;
 }
-table.highlighttable {
-    width: 700px;
+div.highlight {
+    width: 669px;
 }
 @media (min-width: 1600px) {
-  table.highlighttable {
-    width: 900px;
+  div.highlight {
+    width: 869px;
   }
 }
 .post-body h5{font-size: 20px;font-weight: bold;}
