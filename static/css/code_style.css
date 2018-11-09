@@ -9,6 +9,14 @@ blockquote {background-color: #eceeef;border-left: 8px solid #ddd;font-size: 15p
 pre{
     padding: 10px 8px 10px 5px;
 }
+table.highlighttable {
+    width: 700px;
+}
+@media (min-width: 1600px) {
+  table.highlighttable {
+    width: 900px;
+  }
+}
 .post-body h5{font-size: 20px;font-weight: bold;}
 .post-body h4{font-size: 24px;font-weight: bold;}
 .post-body h3{font-size: 28px;font-weight: bold;}
