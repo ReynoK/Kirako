@@ -309,6 +309,26 @@ class QcloudCDNHandler(BaseHandler):
             content = f.read()
 
         return self.write(content)
+
+
+class BDUnionHandler(BaseHandler):
+    """获取具体博文
+    
+    Arguments:
+        BaseHandler {[type]} -- [description]
+    """
+
+    def get(self):
+        file_name = os.path.join(main_dir, "bdunion.txt")
+
+        if not os.path.exists(file_name):
+            self.redirect(self.reverse_url("404"))
+            return
+        content = ''
+        with open(file_name, "rb") as f:        # 不明白为何要加b
+            content = f.read()
+
+        return self.write(content)
         
 def make_app():
 
@@ -328,6 +348,7 @@ def make_app():
         url(r"/post/(?P<path>.*)$", PostHandler, name='post'),
         url(r"/tag/(?P<tag>.*)$", TagHandler, name='tag'),
         url(r"/qcloud_cdn.html", QcloudCDNHandler),
+        url(r"/bdunion.txt", BDUnionHandler),
         url(r"/category/(?P<category>.*)$",
             CategoryHandler, name='category'),          # 可以通过reverse_url("category", "tech")来获取url
         url(r"/notfound", NotFoundHandler, name='404'),
