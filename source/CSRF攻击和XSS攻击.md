@@ -14,7 +14,7 @@ Tag: 安全
 
 #### 原理
 
-![CSRF攻击](https://kirako-1253293746.cos.ap-chengdu.myqcloud.com/CSRF%E6%94%BB%E5%87%BB.pngCSRF%E6%94%BB%E5%87%BB.png?q-sign-algorithm=sha1&q-ak=AKIDBbUtX5sstztuoUafjFbj4fga7jJv6qop&q-sign-time=1543368820;1543370620&q-key-time=1543368820;1543370620&q-header-list=&q-url-param-list=&q-signature=92d0756bf98fdd7e3d5ec980617d69a9c7328f71&x-cos-security-token=01bdc2393eacf64d06aed42b934b056a4cb2afc410001)
+![CSRF攻击](https://kirako-1253293746.cos.ap-chengdu.myqcloud.com/CSRF%E6%94%BB%E5%87%BB.png)
 
 假定受信的站点A是`http://example.org`，恶意站点B是`http://hacker.org`
 
